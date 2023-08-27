@@ -11,21 +11,21 @@ import pyautogui
 from PIL import Image, ImageChops
 
 CURRENT_DIR = os.getcwd()
-TEN_MIN = 600
+TEN_MIN = 680
 DEFAULT_INTERVAL = 2
 GLXH_MAIN_SCENE = {"x": 345, "y": 345}
 GLXH = {"x": 1530, "y": 900}
 CTN = {"x": 1530, "y": 975}
 
 scenes = { 
-          'GLXH' : (1450, 890, 1610, 914), 
-          'CTN' : (1450, 960, 1610, 984),
-          'S' : (1784, 961, 1805, 976), 
-          'ESC' : (1528, 952, 1553, 970), 
-          'SPACE' : (915, 176, 1245, 241), 
-          'CTN1' : (1450, 960, 1610, 984), 
-          'CONFIRM' : (1450, 960, 1610, 984), 
-          'ON_MATCH' : (580, 103, 591, 107)
+          'GLXH' :      (1450, 890, 1610, 914),
+          'CTN' :       (1450, 960, 1610, 984),
+          'S' :         (1784, 961, 1805, 976),
+          'ESC' :       (1528, 952, 1553, 970),
+          'SPACE' :     (915, 176, 1245, 241),
+          'CTN1' :      (1450, 960, 1610, 984),
+          'CONFIRM' :   (1450, 960, 1610, 984),
+          'ON_MATCH':   (580, 103, 591, 107)
          }
 
 
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     
     numOfMatch = 0
 
-    while numOfMatch < args.matches: 
+    while numOfMatch <= args.matches:
         try:
             if numOfMatch == 0:
                 autoMouse.startGLXHMode()
@@ -105,7 +105,9 @@ if __name__ == "__main__":
             time.sleep(camera.interval)
             
             if(camera.interval == TEN_MIN):
+                print("Match: " + numOfMatch)
                 camera.interval = DEFAULT_INTERVAL
+                numOfMatch = numOfMatch + 1
 
         except Exception as e:
             print("Exception:", e)
